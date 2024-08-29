@@ -5,6 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ink Store</title>
     @vite('resources/css/app.css')
+    <style>
+        /* Estilo para a imagem de fundo e o overlay com transparência */
+        body {
+            position: relative;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('{{ asset('images/3173322.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.25; /* 35% opaco, o que equivale a 65% de transparência */
+            z-index: -1; /* Faz com que o pseudo-elemento fique atrás do conteúdo */
+        }
+
+        /* Estilo para o rodapé transparente */
+        footer {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.3); /* Transparência no fundo do rodapé */
+            backdrop-filter: blur(5px); /* Adiciona um leve desfoque */
+        }
+    </style>
 </head>
 <body class="bg-preto-fosco text-branco">
     <!-- Cabeçalho -->
@@ -49,7 +80,7 @@
 
     <!-- Rodapé -->
     <footer class="bg-preto-fosco text-branco py-6 px-4 border-t border-cinza-escuro">
-        <div class="container mx-auto text-center">
+        <div class="container mx-auto text-center relative">
             <p>&copy; 2024 Ink Store. Todos os direitos reservados.</p>
         </div>
     </footer>

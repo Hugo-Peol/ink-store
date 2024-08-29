@@ -12,11 +12,13 @@ export default {
     theme: {
         extend: {
             colors: {
-                'preto-fosco': '#2C2C2C',
-                'preto-profundo': '#000000',
+                'preto-fosco': '#000000',
+                'preto-profundo': '#2C2C2C',
                 'dourado-brilhante': '#FFD700',
                 'dourado-escuro': '#C9B037',
+                'cinza-claro': '#212121',
                 'cinza-escuro': '#4A4A4A',
+                'cinza-escuro-forte': '#171717',
                 'branco': '#FFFFFF',
             },
             fontFamily: {
