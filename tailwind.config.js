@@ -11,6 +11,14 @@ export default {
 
     theme: {
         extend: {
+            colors: {
+                'preto-fosco': '#2C2C2C',
+                'preto-profundo': '#000000',
+                'dourado-brilhante': '#FFD700',
+                'dourado-escuro': '#C9B037',
+                'cinza-escuro': '#4A4A4A',
+                'branco': '#FFFFFF',
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },

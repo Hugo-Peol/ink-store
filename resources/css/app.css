@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-preto-fosco text-branco;
+    }
+
+    h1, h2, h3 {
+        @apply text-branco;
+    }
+
+    a {
+        @apply text-dourado-brilhante hover:underline;
+    }
+}
+
+@layer components {
+    .btn {
+        @apply bg-dourado-brilhante text-preto-fosco py-2 px-4 rounded-lg font-semibold transition hover:bg-dourado-escuro;
+    }
+
+    .header {
+        @apply bg-preto-fosco text-branco;
+    }
+
+    .footer {
+        @apply bg-preto-fosco text-cinza-escuro;
+    }
+}
