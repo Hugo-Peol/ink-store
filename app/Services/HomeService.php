@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Services\Contracts\BaseServiceInterface;
 use App\Http\Resources\HomeResource;
 use App\Repositories\HomeRepository;
+use App\Services\Contracts\BaseServiceInterface;
 
 class HomeService extends BaseService implements BaseServiceInterface
 {
@@ -16,5 +16,4 @@ class HomeService extends BaseService implements BaseServiceInterface
 
         parent::__construct($this->resource, $repository);
     }
-
 }

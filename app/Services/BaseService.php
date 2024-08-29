@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Repositories\BaseRepository;
 use App\Services\Contracts\BaseServiceInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
@@ -13,10 +12,7 @@ use Ramsey\Collection\Collection;
 
 class BaseService implements BaseServiceInterface
 {
-
-    public function __construct(private $resource, private $repository)
-    {
-    }
+    public function __construct(private $resource, private $repository) {}
 
     public function findAll(): ResourceCollection
     {
@@ -50,5 +46,4 @@ class BaseService implements BaseServiceInterface
     {
         return $this->repository->delete($id);
     }
-
 }

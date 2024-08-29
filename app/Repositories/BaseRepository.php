@@ -5,21 +5,15 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Repositories\Contracts\BaseRepositoryInterface;
-use App\Traits\RestExceptionHandlerTrait;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\DB;
 
 class BaseRepository implements BaseRepositoryInterface
 {
-
-    public function __construct(private $model, private Request $request)
-    {
-    }
+    public function __construct(private $model, private Request $request) {}
 
     public function findAll(): Collection
     {
@@ -29,6 +23,7 @@ class BaseRepository implements BaseRepositoryInterface
     public function create(Request|array $request): Model
     {
         $data = $request instanceof Request ? $request->all() : $request;
+
         return $this->model->create($data);
     }
 
@@ -45,7 +40,7 @@ class BaseRepository implements BaseRepositoryInterface
         return $row;
     }
 
-    public function createOrUpdate(Request|array $request, int $id = null): Model
+    public function createOrUpdate(Request|array $request, ?int $id = null): Model
     {
         $data = $request instanceof Request ? $request->all() : $request;
 
@@ -67,7 +62,7 @@ class BaseRepository implements BaseRepositoryInterface
         return $row;
     }
 
-       public function createMany(array $data): bool
+    public function createMany(array $data): bool
     {
         return $this->model->insert($data);
     }

@@ -4,34 +4,17 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\HomeRequest;
-use App\Http\Requests\HomeUpdateRequest;
-use App\Services\HomeService;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Contracts\View\View;
-use Ramsey\Collection\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\Artist;
+use App\Models\Review;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-
-    public function __construct(
-        private readonly HomeService $service,
-    ) {
-    }
-
-
-    public function index(): View
+    public function index(): \Illuminate\View\View
     {
-        return view('home');
+        $artists = Artist::all(); // Certifique-se de ter um modelo Artist e dados para esta consulta
+        $reviews = Review::latest()->take(3)->get(); // Ajuste conforme a lógica dos reviews
+
+        return view('home', compact('artists', 'reviews'));
     }
-
-    public function store(HomeRequest $request): View
-    {
-        $hand = $request->input('hand');
-
-        return view('home');
-    }
-
 }
