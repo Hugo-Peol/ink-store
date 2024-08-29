@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\ArtController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 
@@ -16,7 +17,7 @@ Route::resource('reviews', ReviewController::class);
 Route::resource('artists', ArtistController::class);
 Route::resource('products', ProductController   ::class);
 Route::prefix('/')->group(__DIR__.'/web/home.php')->name('home.');
-
+Route::resource('arts', ArtController::class);
 
 
 Route::get('/dashboard', function () {
