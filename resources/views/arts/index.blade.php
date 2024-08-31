@@ -5,28 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ink Store</title>
     @vite('resources/css/app.css')
-    <style>
-        /* Garante que a imagem de fundo se repita */
-        body {
-            position: relative;
-            margin: 0;
-            height: 100vh;
-            overflow-x: hidden; /* Impede rolagem horizontal */
-            overflow-y: auto; /* Permite rolagem vertical quando necessário */
-            background-image: url('{{ asset('images/3173322.jpg') }}'); /* Caminho para a sua imagem */
-            background-repeat: repeat; /* Faz a imagem se repetir */
-            background-size: auto; /* Mantém o tamanho original da imagem */
-            background-position: center; /* Centraliza a imagem */
-        }
-
-        /* Estilo para o rodapé transparente */
-        footer {
-            position: relative;
-            z-index: 1;
-            background-color: rgba(0, 0, 0, 0.3); /* Transparência no fundo do rodapé */
-            backdrop-filter: blur(5px); /* Adiciona um leve desfoque */
-        }
-    </style>
 </head>
 <body class="bg-preto-fosco text-branco">
     <!-- Cabeçalho -->
@@ -51,7 +29,7 @@
 
         <!-- Cards de Artes -->
         <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach ($arts as $art)
+            @foreach($arts as $art)
                 <x-art-card
                     :title="$art->title"
                     :image="$art->image_url"

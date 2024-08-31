@@ -36,3 +36,25 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+/* Garante que as imagens se ajustem ao tamanho do contêiner e não excedam */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove espaços indesejados ao redor das imagens */
+}
+
+/* Estilos específicos para os cartões de arte */
+.art-card {
+    max-width: 100%;
+    height: auto;
+    overflow: hidden; /* Garante que o conteúdo não ultrapasse o contêiner */
+    box-sizing: border-box; /* Inclui bordas e preenchimento no tamanho total do elemento */
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden; /* Impede rolagem horizontal */
+    overflow-y: auto; /* Permite rolagem vertical quando necessário */
+}
+
