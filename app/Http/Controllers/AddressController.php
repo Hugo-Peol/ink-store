@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddressRequest;
 use App\Repositories\AddressRepository;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class AddressController extends Controller
 {
@@ -18,33 +18,48 @@ class AddressController extends Controller
         $this->addressRepository = $addressRepository;
     }
 
-    public function index(): JsonResponse
+    public function index(): View
     {
         $addresses = $this->addressRepository->findAll();
-        return response()->json($addresses);
+        return view('addresses.index', ['addresses' => $addresses]);
     }
 
-    public function store(Request $request): JsonResponse
+    public function store(AddressRequest $request): RedirectResponse
     {
-        $address = $this->addressRepository->create($request);
-        return response()->json($address, Response::HTTP_CREATED);
+        $this->addressRepository->create($request->validated());
+        return redirect()->route('addresses.index')->with('success', 'Endereço criado com sucesso.');
     }
 
-    public function show(int $id): JsonResponse
+    public function show(int $id): View
     {
         $address = $this->addressRepository->findOne($id);
-        return response()->json($address);
+
+        if (!$address) {
+            abort(404, 'Endereço não encontrado');
+        }
+
+        return view('addresses.show', ['address' => $address]);
     }
 
-    public function update(Request $request, int $id): JsonResponse
+    public function update(AddressRequest $request, int $id): RedirectResponse
     {
-        $address = $this->addressRepository->edit($request, $id);
-        return response()->json($address);
+        $address = $this->addressRepository->edit($request->validated(), $id);
+
+        if (!$address) {
+            abort(404, 'Endereço não encontrado');
+        }
+
+        return redirect()->route('addresses.index')->with('success', 'Endereço atualizado com sucesso.');
     }
 
-    public function destroy(int $id): JsonResponse
+    public function destroy(int $id): RedirectResponse
     {
         $deleted = $this->addressRepository->delete($id);
-        return response()->json(['deleted' => $deleted]);
+
+        if (!$deleted) {
+            abort(404, 'Endereço não encontrado');
+        }
+
+        return redirect()->route('addresses.index')->with('success', 'Endereço excluído com sucesso.');
     }
 }

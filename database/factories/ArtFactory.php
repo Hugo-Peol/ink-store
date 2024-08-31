@@ -20,7 +20,7 @@ class ArtFactory extends Factory
         return [
             'title' => $this->faker->words(3, true),
             'description' => $this->faker->paragraph,
-            'image_url' => $this->faker->imageUrl(640, 480, 'art', true, 'Faker'),
+            'image_url' => 'images/tatoo_01.jpg', // Caminho relativo à pasta public
             'artist_id' => Artist::factory(),
             'price' => $this->faker->randomFloat(2, 50, 500),
         ];
